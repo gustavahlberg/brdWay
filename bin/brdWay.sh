@@ -13,7 +13,7 @@ PROGVERSION=0.1.0
 #
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-. $DIR/../lib/stages.sh
+. $DIR/../lib/stages/*
 . $DIR/../lib/clusterManager.sh
 . $DIR/../lib/printStages.sh
 torque=$DIR/../bin/bpipe-torque.sh
