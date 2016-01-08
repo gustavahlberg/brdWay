@@ -1,0 +1,7 @@
+*~
+^#
+*.pbs
+*.vcf
+*.fa
+*.table
+data/*
