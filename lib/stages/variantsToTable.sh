@@ -8,8 +8,8 @@
 #source configurations
 
 STAGEDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-source $STAGEDIR/../configDir/config.sh
-. $STAGEDIR/../lib/dependCheck.sh
+source $STAGEDIR/../../configDir/config.sh
+. $STAGEDIR/../../lib/dependCheck.sh
 PWD=`pwd`
 PWD=${PWD%/}
 : ${outdir:=$PWD}
@@ -56,11 +56,11 @@ variantsToTableRun () {
 	#then	
 	COLUMNS=`infoString $1`
 
-	$GATK -R $REF -T VariantsToTable -V $1\
-	--showFiltered --allowMissingData\
-	-o $1.table\
-	-F CHROM -F POS -F ID -F REF -F ALT -F QUAL -F FILTER\
-	$COLUMNS\
+	$GATK -R $REF -T VariantsToTable -V $1 \
+	--showFiltered --allowMissingData \
+	-o $1.table \
+	-F CHROM -F POS -F ID -F REF -F ALT -F QUAL -F FILTER \
+	$COLUMNS \
 	-GF GT -GF AD -GF DP -GF GQ -GF PL
     else
 	echo "ERROR: No input file supplied"

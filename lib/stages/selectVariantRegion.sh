@@ -8,8 +8,8 @@
 #source configurations
 
 STAGEDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-source $STAGEDIR/../configDir/config.sh
-. $STAGEDIR/../lib/dependCheck.sh
+source $STAGEDIR/../../configDir/config.sh
+. $STAGEDIR/../../lib/dependCheck.sh
 PWD=`pwd`
 PWD=${PWD%/}
 : ${outdir:=$PWD}

@@ -31,6 +31,7 @@ fileCheck () {
 	echo "ERROR: Check your config file in configir directory"
 	exit 1
     fi
+    
 
 }
 
@@ -53,6 +54,7 @@ dependGATK () {
 # Stage specfic dependencies checks
 #
 
+#--------------------------------------------
 #check dependencies of variants to table
 dependVariantsToTable () {
     #checking typical GATK depenencies
@@ -62,7 +64,7 @@ dependVariantsToTable () {
     # ....
 }
 
-
+#--------------------------------------------
 dependSelectVariantRegion () {
     #checking typical GATK depenencies
     dependGATK
@@ -72,7 +74,7 @@ dependSelectVariantRegion () {
     echo "dependencies for SelectVariantRegion: OK"
 }
 
-
+#--------------------------------------------
 #check dependencies for GATK select variants (select samples & remove samples)
 dependSelectVariantSample () {
     #checking typical GATK depenencies
@@ -81,6 +83,20 @@ dependSelectVariantSample () {
     fileCheck $bed
     fileCheck $LIST
     echo "dependencies for SelectVariantRegion: OK"
+}
+
+
+#--------------------------------------------
+#check dependencies for GATK VariantEval
+dependVariantEval () {
+    #checking typical GATK depenencies
+    dependGATK
+    # tool specific dependencies here
+    fileCheck $dbsnp
+    echo $dbsnp
+    fileCheck $exac
+    echo $exac
+    echo "dependencies for VariantEval: OK"
 }
 
 

@@ -8,8 +8,8 @@ ROOT="$CONFDIR/.."
 RESRC="$ROOT/../RESOURCES"
 
 #Resources
-#dbSnp="$RESRC/All.vcf"
-#exac="$RESRC/exac/release0.3/ExAC.r0.3.sites.vep.vcf.gz"
+dbsnp="$RESRC/All.vcf.gz"
+exac="$RESRC/exac/release0.3/ExAC.r0.3.sites.vep.vcf.gz"
 #g1k="$RESRC/exac/ALL.wgs.phase3_shapeit2_mvncall_integrated_v5.20130502.sites.vcf.gz"
 #mills="$RESRC/Mills_and_1000G_gold_standard.indels.b37.vcf"
 #dbNSFP="$RESRC/dbNSFP2.9.txt.gz"
@@ -43,5 +43,5 @@ TMPCONFDIR="$ROOT/temp"
 
 #==================================================
 # Set location for Tools
-GATK="java -XX:+UseParallelGC -XX:ParallelGCThreads=8 -Xmx8g -Djava.io.tmpdir=$ROOT/temp -jar $CONFDIR/../bin/GenomeAnalysisTK.jar"
-GenomeAnalysisToolKit="$CONFDIR/../bin/GenomeAnalysisTK.jar"
+GATK="java -XX:+UseParallelGC -XX:ParallelGCThreads=8 -Xmx8g -Djava.io.tmpdir=$ROOT/temp -jar $HOME/GATK_latest/GenomeAnalysisTK.jar"
+GenomeAnalysisToolKit="$HOME/GATK_latest/GenomeAnalysisTK.jar"

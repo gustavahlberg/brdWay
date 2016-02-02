@@ -13,9 +13,13 @@ PROGVERSION=0.1.0
 #
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-. $DIR/../lib/stages/*
+
+for f in $DIR/../lib/stages/*.sh; do
+    . $f
+done
 . $DIR/../lib/clusterManager.sh
 . $DIR/../lib/printStages.sh
+. $DIR/../configDir/config.sh
 torque=$DIR/../bin/bpipe-torque.sh
 
 #--------------------------------------
