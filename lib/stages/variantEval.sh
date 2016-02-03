@@ -20,11 +20,6 @@ PWD=${PWD%/}
 #
 
 variantEval () {
-
-    #echo $1 
-    shift
-    echo $1
-    #echo $2
     if [[ $# -ge 1 ]]; then
 	case "$1" in
 	    run) shift
@@ -45,15 +40,18 @@ variantEval () {
 
 #Run program
 variantEvalRun () {
-
-        if [[ $# -ge 1 ]]; then
-	#then	
+    
+    if [[ $# -ge 1 ]]; then
+	#then
+	output
+	
 	$GATK -R $REF -T VariantEval \
         -D $dbsnp \
 	-comp $exac \
-	-o $1.table \
 	-eval $1 \
-	-o $1.eval.gatkreport
+	-o $OUT.eval.gatkreport\
+	-L $bed\
+        -ip $PADDING
     else
 	echo "ERROR: No input file supplied"
     fi

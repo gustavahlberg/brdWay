@@ -6,7 +6,15 @@
 # FUNCTIONS to manage job submissions
 # for torque hpc.
 
-#write settings for PBS script
+
+
+#write settings for PBS script 
+sendPBS () {
+    COMMAND="$APP run $1" NAME=$NAME WALLTIME=$WALLTIME MEMORY=$MEMORY PROCS=$PROCS QUEUE=batch $torque start;
+}
+
+
+#write settings for PBS script interactive 
 customPBS () {
     read -p "Walltime?: " WALLTIME
     read -p "NAME?: " NAME

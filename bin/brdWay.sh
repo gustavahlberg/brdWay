@@ -19,6 +19,7 @@ for f in $DIR/../lib/stages/*.sh; do
 done
 . $DIR/../lib/clusterManager.sh
 . $DIR/../lib/printStages.sh
+. $DIR/../lib/output.sh
 . $DIR/../configDir/config.sh
 torque=$DIR/../bin/bpipe-torque.sh
 
@@ -47,10 +48,9 @@ interactive session or using configured defaults
 HERE
 }   
 
-
 #run/execute locally or on cluster
 run () {
-    echo $1 $2 
+    #echo $1 $2 
     #shift;
     #echo $1
     case $2 in 
@@ -64,29 +64,24 @@ run () {
 
 #run on cluster
 runOnCluster () {
-    while true; do
-	read -p "Do you wish to run on cluster with defaults? y/n " yn
-	case $yn in
-	    [Yy]* ) jobID=`COMMAND="$APP run $1" NAME=$APP $torque start`;
-		    if [[ $jobID -eq "" ]];then
-			exit 1;
-		    fi
-		    break;;
-	    [Nn]* ) jobID=`customPBS $1`;
-		    if [[ $jobID -eq "" ]];then
-			exit 1;
-		    fi
-		    break;;
-	    * ) echo "Please answer yes or no.";;
-	esac
-    done
+    NAME=${NAME:-$1}
+    jobID=`sendPBS $1`;    
     
     while true; do
-	read -p "Check job status? y/n " yn
-	case $yn in
-	    [Yy]* ) jobStatus $jobID;;
-	    [Nn]* ) break;;
-	    * ) echo "Please answer yes or no.";;
+	STATUS=`jobStatus $jobID`
+	#echo $STATUS
+	echo $jobID
+	echo "HEJ HEJ HEJ "
+	case $STATUS in
+	    W|R) sleep 20;; #if job is still running 
+	    C*) 
+		echo "COMPLETE $command_exit_status";
+		break;;		# 
+	    *) 
+		echo ERROR: job did not complete run;
+		
+		break;;
+	    
 	esac
     done
 }
@@ -136,10 +131,12 @@ main () {
     done
   shift $(( OPTIND - 1 ));
   
-  echo "Running $APP"
-
+  
   #check dependencies
   $APP depend  
+
+  echo "Running $APP..........."
+  echo "..........."
 
   #run job
   run $INPUT $HPC

@@ -14,8 +14,8 @@ PWD=`pwd`
 PWD=${PWD%/}
 : ${outdir:=$PWD}
 
-echo $PWD
-echo $outdir
+#echo $PWD
+#echo $outdir
 #-----------------------------------------
 #
 # select variant in region defined by bed file
@@ -49,7 +49,7 @@ selectVariantRegionRun () {
 	vcf=$1
 	#bed=$2
 	#default cores 4
-	: ${NT:=4}
+	NT=${NT:-4}
 	in=$(basename $vcf)
 	out=${in%.*}.selectRegion.vcf
 

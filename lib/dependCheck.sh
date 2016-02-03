@@ -69,7 +69,7 @@ dependSelectVariantRegion () {
     #checking typical GATK depenencies
     dependGATK
     # tool specific dependencies here
-    echo $BED
+    echo $bed
     fileCheck $bed
     echo "dependencies for SelectVariantRegion: OK"
 }
@@ -96,6 +96,7 @@ dependVariantEval () {
     echo $dbsnp
     fileCheck $exac
     echo $exac
+    fileCheck $bed
     echo "dependencies for VariantEval: OK"
 }
 

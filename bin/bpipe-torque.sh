@@ -38,6 +38,8 @@
 #
 
 
+
+
 program_name=bpipe-torque
 
 # exit codes:
@@ -60,15 +62,18 @@ DEFAULT_QUEUE=batch
 
 # Set Path for loading library in PBS script:
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-STAGELIB=$DIR/../lib/stages.sh
+for f in $DIR/../lib/stages/*.sh; do
+    . $f
+done
+
 CONF=$DIR/../configDir/config.sh
 
-#Add paths for log files
-LOGDIR=$DIR/../log
+#Add default paths for log files
+LOGDIR=${LOGDIR:-.}
 
 # Default to 1 node - this can be overridden directly by user
 # or alternatively by value of procs via set_procs
-: ${NODES:=1}
+NODES=${NODES:-1}
 
 # Print a usage message
 usage () {
@@ -185,7 +190,12 @@ $procs_request
 $CUSTOM
 cd \$PBS_O_WORKDIR
 
-. $STAGELIB
+for f in $DIR/../lib/stages/*.sh; do
+    . $f
+done
+. $DIR/../lib/output.sh
+. $CONF
+
 $COMMAND
 sleep 1 
 EOF
@@ -243,6 +253,7 @@ stop () {
 }
 
 # get the status of a job given its id
+<<EOF
 status () {
    # make sure we have a job id on the command line
    if [[ $# -ge 1 ]]
@@ -252,7 +263,6 @@ status () {
 	 # HACK TO GET JOBID status
 	 qstat_output=`qstat -u $USER | grep "$1"`
          qstat_success=$?
-	 echo $qstat_success
          if [[ $qstat_success == 0 ]]
             then
               # XXX what to do if the awk fails?
@@ -287,16 +297,20 @@ status () {
          exit $STATUS_MISSING_JOBID
    fi
 }
+EOF
 
+status() {
+    echo "HEJ"
+}
 # run the whole thing
 main () {
    # check that we have at least one command
    if [[ $# -ge 1 ]]
       then
          case "$1" in
-            start)  start;;
-            stop)   shift
-                      stop "$@";;
+ #           start)  start;;
+ #           stop)   shift
+ #                     stop "$@";;
             status) shift
                       status "$@";;
             *) usage

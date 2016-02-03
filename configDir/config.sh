@@ -3,6 +3,24 @@
 #project root
 CONFDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ROOT="$CONFDIR/.."
+
+
+#================================================
+# Default PBS submission settings
+
+#job name
+NAME=${NAME:-$INPUT}
+#Walltime
+WALLTIME=${WALLTIME:-36000}
+#Process
+PROCS=${PROCS:-1}
+#Memory (GB)
+MEMORY=${MEMORY:-4}
+#Queue
+QUEUE=${QUEUE:-batch}
+
+
+
 #================================================
 # RESOURCES PATH
 RESRC="$ROOT/../RESOURCES"
@@ -20,7 +38,10 @@ exac="$RESRC/exac/release0.3/ExAC.r0.3.sites.vep.vcf.gz"
 
 
 #bed file default if any
-: ${bed=:$RESRC/Broad.human.exome.b37.interval_list}
+bed=${bed:-$RESRC/Broad.human.exome.b37.interval_list}
+
+#set default padding
+PADDING=${PADDING:-100}
 
 # REF GENOME
 REF="$RESRC/REF/hs.build37.1.fa"
@@ -45,3 +66,4 @@ TMPCONFDIR="$ROOT/temp"
 # Set location for Tools
 GATK="java -XX:+UseParallelGC -XX:ParallelGCThreads=8 -Xmx8g -Djava.io.tmpdir=$ROOT/temp -jar $HOME/GATK_latest/GenomeAnalysisTK.jar"
 GenomeAnalysisToolKit="$HOME/GATK_latest/GenomeAnalysisTK.jar"
+

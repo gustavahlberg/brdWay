@@ -1,0 +1,2 @@
+manpath: warning: $MANPATH set, ignoring /etc/man_db.conf
+/cm/local/apps/torque/var/spool/mom_priv/jobs/2145881.risoe-r04-sn064.SC: line 19: systemTest: command not found

@@ -1,0 +1,3 @@
+output() {
+    OUT=$(basename $INPUT)
+}
