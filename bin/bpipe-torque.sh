@@ -191,12 +191,13 @@ $CUSTOM
 cd \$PBS_O_WORKDIR
 
 for f in $DIR/../lib/stages/*.sh; do
-    . $f
+    echo \$f >> test.txt
+    echo "HEJ" >> test.txt
 done
 . $DIR/../lib/output.sh
 . $CONF
 
-$COMMAND
+#$COMMAND
 sleep 1 
 EOF
 
@@ -253,7 +254,7 @@ stop () {
 }
 
 # get the status of a job given its id
-<<EOF
+
 status () {
    # make sure we have a job id on the command line
    if [[ $# -ge 1 ]]
@@ -297,20 +298,19 @@ status () {
          exit $STATUS_MISSING_JOBID
    fi
 }
-EOF
 
-status() {
-    echo "HEJ"
-}
+
+
+
 # run the whole thing
 main () {
    # check that we have at least one command
    if [[ $# -ge 1 ]]
       then
          case "$1" in
- #           start)  start;;
- #           stop)   shift
- #                     stop "$@";;
+           start)  start;;
+            stop)   shift
+                      stop "$@";;
             status) shift
                       status "$@";;
             *) usage

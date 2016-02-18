@@ -1,1 +1,13 @@
-Hello QSUB!
+/home/projects/pr_99009/people/salling/brdWay/bin/../lib/stages/variantsToTable.sh
+/home/projects/pr_99009/people/salling/brdWay/bin/../lib/stages/MendelianViolation.sh
+HEJ
+/home/projects/pr_99009/people/salling/brdWay/bin/../lib/stages/selectVariantRegion.sh
+HEJ
+/home/projects/pr_99009/people/salling/brdWay/bin/../lib/stages/selectVariantsRemoveSample.sh
+HEJ
+/home/projects/pr_99009/people/salling/brdWay/bin/../lib/stages/systemTest.sh
+HEJ
+/home/projects/pr_99009/people/salling/brdWay/bin/../lib/stages/variantEval.sh
+HEJ
+/home/projects/pr_99009/people/salling/brdWay/bin/../lib/stages/variantsToTable.sh
+HEJ

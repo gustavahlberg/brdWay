@@ -17,6 +17,8 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 for f in $DIR/../lib/stages/*.sh; do
     . $f
 done
+
+. $DIR/../lib/dependCheck.sh
 . $DIR/../lib/clusterManager.sh
 . $DIR/../lib/printStages.sh
 . $DIR/../lib/output.sh
@@ -69,9 +71,9 @@ runOnCluster () {
     
     while true; do
 	STATUS=`jobStatus $jobID`
-	#echo $STATUS
-	echo $jobID
-	echo "HEJ HEJ HEJ "
+	echo $STATUS
+	#echo $jobID
+	
 	case $STATUS in
 	    W|R) sleep 20;; #if job is still running 
 	    C*) 
@@ -132,7 +134,7 @@ main () {
   shift $(( OPTIND - 1 ));
   
   
-  #check dependencies
+  echo "$APP check dependencies"
   $APP depend  
 
   echo "Running $APP..........."
