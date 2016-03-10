@@ -190,14 +190,14 @@ $procs_request
 $CUSTOM
 cd \$PBS_O_WORKDIR
 
-for f in $DIR/../lib/stages/*.sh; do
-    echo \$f >> test.txt
-    echo "HEJ" >> test.txt
-done
+#for f in $DIR/../lib/stages/*.sh; do
+#done
+
+. $DIR/../lib/stages/$STAGE
 . $DIR/../lib/output.sh
 . $CONF
 
-#$COMMAND
+$COMMAND
 sleep 1 
 EOF
 

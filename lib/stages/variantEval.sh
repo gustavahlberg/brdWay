@@ -43,7 +43,8 @@ variantEvalRun () {
     
     if [[ $# -ge 1 ]]; then
 	#then
-	output
+	output $1
+	echo $OUT
 	
 	$GATK -R $REF -T VariantEval \
         -D $dbsnp \

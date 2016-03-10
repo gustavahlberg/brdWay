@@ -1,3 +1,3 @@
 output() {
-    OUT=$(basename $INPUT)
+    OUT=$(basename $1)
 }

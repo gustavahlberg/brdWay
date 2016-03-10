@@ -1,3 +1,4 @@
+
 #!/bin/bash
 #
 # Author: Gustav
@@ -68,20 +69,23 @@ run () {
 runOnCluster () {
     NAME=${NAME:-$1}
     jobID=`sendPBS $1`;    
-    
+    #jobID=`customPBS $1`;    
+
     while true; do
 	STATUS=`jobStatus $jobID`
-	echo $STATUS
+	#STATUS=`$torque status $jobID`
+	#echo $STATUS
 	#echo $jobID
 	
 	case $STATUS in
-	    W|R) sleep 20;; #if job is still running 
-	    C*) 
-		echo "COMPLETE $command_exit_status";
+	    WAITING) sleep 20;; #if job is still running 
+	    RUNNING) sleep 20;; #if job is still running 
+	    COMPLETE*)
+		echo $STATUS;
 		break;;		# 
-	    *) 
+	    UNKNOWN) 
 		echo ERROR: job did not complete run;
-		
+		#exit 1;
 		break;;
 	    
 	esac
@@ -135,6 +139,7 @@ main () {
   
   
   echo "$APP check dependencies"
+  export $APP
   $APP depend  
 
   echo "Running $APP..........."

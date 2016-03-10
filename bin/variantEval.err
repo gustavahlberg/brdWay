@@ -1,0 +1,70 @@
+manpath: warning: $MANPATH set, ignoring /etc/man_db.conf
+basename: missing operand
+Try 'basename --help' for more information.
+INFO  16:45:35,947 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  16:45:35,949 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.5-0-g36282e4, Compiled 2015/11/25 04:03:56 
+INFO  16:45:35,949 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  16:45:35,949 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  16:45:35,953 HelpFormatter - Program Args: -R /home/projects/pr_99009/people/salling/brdWay/configDir/../../RESOURCES/REF/hs.build37.1.fa -T VariantEval -D /home/projects/pr_99009/people/salling/brdWay/configDir/../../RESOURCES/All.vcf.gz -comp /home/projects/pr_99009/people/salling/brdWay/configDir/../../RESOURCES/exac/release0.3/ExAC.r0.3.sites.vep.vcf.gz -eval ../data/C1883.anno.dbnsfp.chr22.vcf -o .eval.gatkreport -L /home/projects/pr_99009/people/salling/brdWay/configDir/../../RESOURCES/Broad.human.exome.b37.interval_list -ip 100 
+INFO  16:45:35,962 HelpFormatter - Executing as salling@risoe-r03-cn028 on Linux 3.10.0-327.4.5.el7.x86_64 amd64; OpenJDK 64-Bit Server VM 1.8.0_71-b15. 
+INFO  16:45:35,962 HelpFormatter - Date/Time: 2016/03/09 16:45:35 
+INFO  16:45:35,962 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  16:45:35,962 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  16:45:36,134 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  16:45:36,253 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 1000 
+INFO  16:45:37,166 IntervalUtils - Processing 69037890 bp from intervals 
+WARN  16:45:37,176 IndexDictionaryUtils - Track comp doesn't have a sequence dictionary built in, skipping dictionary validation 
+WARN  16:45:37,177 IndexDictionaryUtils - Track dbsnp doesn't have a sequence dictionary built in, skipping dictionary validation 
+INFO  16:45:37,353 GenomeAnalysisEngine - Preparing for traversal 
+INFO  16:45:37,381 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  16:45:37,382 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  16:45:37,382 ProgressMeter -                 | processed |    time |    per 1M |           |   total | remaining 
+INFO  16:45:37,382 ProgressMeter -        Location |     sites | elapsed |     sites | completed | runtime |   runtime 
+INFO  16:45:37,400 VariantEval - Creating 6 combinatorial stratification states 
+INFO  16:46:07,390 ProgressMeter -      1:23419835    193618.0    30.0 s       2.6 m        1.5%    32.3 m      31.8 m 
+INFO  16:46:37,392 ProgressMeter -      1:65016228    437225.0    60.0 s       2.3 m        3.8%    26.5 m      25.5 m 
+INFO  16:47:07,395 ProgressMeter -     1:154234028    703690.0    90.0 s       2.1 m        6.2%    24.1 m      22.6 m 
+INFO  16:47:37,399 ProgressMeter -     1:204216406    955554.0   120.0 s       2.1 m        8.5%    23.4 m      21.4 m 
+INFO  16:48:07,403 ProgressMeter -      2:27721953   1231413.0     2.5 m       2.0 m       11.0%    22.7 m      20.2 m 
+INFO  16:48:37,407 ProgressMeter -     2:118586435   1518419.0     3.0 m     118.0 s       13.6%    22.1 m      19.1 m 
+INFO  16:49:07,409 ProgressMeter -     2:202490654   1765764.0     3.5 m     118.0 s       15.9%    22.0 m      18.5 m 
+INFO  16:49:37,411 ProgressMeter -      3:14564463   2004384.0     4.0 m     119.0 s       18.0%    22.2 m      18.2 m 
+INFO  16:50:07,413 ProgressMeter -      3:64672191   2248339.0     4.5 m     120.0 s       20.2%    22.3 m      17.8 m 
+INFO  16:50:37,414 ProgressMeter -     3:183670787   2526721.0     5.0 m     118.0 s       22.8%    21.9 m      16.9 m 
+INFO  16:51:07,417 ProgressMeter -      4:57312816   2750506.0     5.5 m     119.0 s       24.7%    22.2 m      16.7 m 
+INFO  16:51:37,419 ProgressMeter -       5:1466796   3044527.0     6.0 m     118.0 s       27.5%    21.8 m      15.8 m 
+INFO  16:52:07,433 ProgressMeter -     5:138718136   3333783.0     6.5 m     116.0 s       30.3%    21.5 m      15.0 m 
+INFO  16:52:37,435 ProgressMeter -      6:29429448   3616649.0     7.0 m     116.0 s       32.6%    21.5 m      14.5 m 
+INFO  16:53:07,437 ProgressMeter -      6:76599727   3850202.0     7.5 m     116.0 s       34.7%    21.6 m      14.1 m 
+INFO  16:53:37,440 ProgressMeter -       7:4900992   4125741.0     8.0 m     116.0 s       37.2%    21.5 m      13.5 m 
+INFO  16:54:07,442 ProgressMeter -     7:100252961   4401051.0     8.5 m     115.0 s       39.7%    21.4 m      12.9 m 
+INFO  16:54:37,444 ProgressMeter -      8:17871391   4687893.0     9.0 m     115.0 s       42.0%    21.4 m      12.4 m 
+INFO  16:55:07,447 ProgressMeter -     8:142437765   4973132.0     9.5 m     114.0 s       44.7%    21.3 m      11.8 m 
+INFO  16:55:37,448 ProgressMeter -     9:102747149   5258061.0    10.0 m     114.0 s       47.1%    21.2 m      11.2 m 
+INFO  16:56:07,450 ProgressMeter -     9:140481337   5505091.0    10.5 m     114.0 s       49.2%    21.4 m      10.9 m 
+INFO  16:56:37,455 ProgressMeter -     10:99529346   5799666.0    11.0 m     113.0 s       51.9%    21.2 m      10.2 m 
+INFO  16:57:07,457 ProgressMeter -      11:7984692   6066703.0    11.5 m     113.0 s       54.0%    21.3 m       9.8 m 
+INFO  16:57:37,460 ProgressMeter -     11:64976702   6316799.0    12.0 m     113.0 s       56.2%    21.3 m       9.3 m 
+INFO  16:58:07,462 ProgressMeter -    11:118897551   6562643.0    12.5 m     114.0 s       58.4%    21.4 m       8.9 m 
+INFO  16:58:37,466 ProgressMeter -     12:43856609   6801081.0    13.0 m     114.0 s       60.5%    21.5 m       8.5 m 
+INFO  16:59:07,468 ProgressMeter -     12:96350404   7037237.0    13.5 m     115.0 s       62.7%    21.5 m       8.0 m 
+INFO  16:59:37,471 ProgressMeter -     13:42887094   7316823.0    14.0 m     114.0 s       65.2%    21.5 m       7.5 m 
+INFO  17:00:07,473 ProgressMeter -     14:57101560   7585546.0    14.5 m     114.0 s       67.6%    21.5 m       7.0 m 
+INFO  17:00:37,476 ProgressMeter -     15:34527311   7867325.0    15.0 m     114.0 s       69.9%    21.4 m       6.4 m 
+INFO  17:01:07,479 ProgressMeter -     15:75658770   8103741.0    15.5 m     114.0 s       72.1%    21.5 m       6.0 m 
+INFO  17:01:37,482 ProgressMeter -      16:4455393   8334494.0    16.0 m     115.0 s       73.8%    21.7 m       5.7 m 
+INFO  17:02:07,485 ProgressMeter -     16:66946989   8572076.0    16.5 m     115.0 s       75.9%    21.7 m       5.2 m 
+INFO  17:02:37,488 ProgressMeter -      17:5085373   8813666.0    17.0 m     115.0 s       77.7%    21.9 m       4.9 m 
+INFO  17:03:07,491 ProgressMeter -     17:37844014   9050306.0    17.5 m     116.0 s       79.8%    21.9 m       4.4 m 
+INFO  17:03:37,494 ProgressMeter -     17:71027636   9288750.0    18.0 m     116.0 s       81.9%    22.0 m       4.0 m 
+INFO  17:04:07,496 ProgressMeter -     18:43529638   9521022.0    18.5 m     116.0 s       83.8%    22.1 m       3.6 m 
+INFO  17:04:37,498 ProgressMeter -      19:9452627   9776381.0    19.0 m     116.0 s       85.7%    22.2 m       3.2 m 
+INFO  17:05:07,499 ProgressMeter -     19:38781076   1.0041648E7    19.5 m     116.0 s       87.8%    22.2 m       2.7 m 
+INFO  17:05:37,503 ProgressMeter -     19:53652401   1.0292897E7    20.0 m     116.0 s       89.7%    22.3 m       2.3 m 
+INFO  17:06:07,506 ProgressMeter -     20:45357912   1.0586915E7    20.5 m     116.0 s       92.1%    22.3 m     105.0 s 
+INFO  17:06:37,508 ProgressMeter -     22:20130204   1.0840967E7    21.0 m     116.0 s       94.1%    22.3 m      79.0 s 
+INFO  17:07:07,511 ProgressMeter -       X:2839924   1.1090329E7    21.5 m     116.0 s       96.0%    22.4 m      53.0 s 
+INFO  17:07:35,275 VariantEval - Finalizing variant report 
+INFO  17:07:35,388 ProgressMeter -            done   1.1367054E7    22.0 m     115.0 s      100.0%    22.0 m       0.0 s 
+INFO  17:07:35,389 ProgressMeter - Total runtime 1318.01 secs, 21.97 min, 0.37 hours 
+INFO  17:07:36,984 GATKRunReport - Uploaded run statistics report to AWS S3 
