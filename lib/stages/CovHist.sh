@@ -14,49 +14,39 @@ PWD=`pwd`
 PWD=${PWD%/}
 : ${outdir:=$PWD}
 
+
+
 #-----------------------------------------
 # Function: variantsEval
-# Runs GATK variant evaluation
+# Runs bedtools histograms
 #
 
-variantEval () {
+covHist () {
     if [[ $# -ge 1 ]]; then
 	case "$1" in
 	    run) shift
-		 variantEvalRun "$1";
+		 covHistRun "$1";
 		 ;;
-	    depend) dependVariantEval;
+	    depend) dependCovHist;
 		    ;;
-	    *) echo "ERROR. run as: variantEval depend/run ";
+	    *) echo "ERROR. run as: covHist depend/run ";
 	       exit 1
 	       ;;
 	esac
     else
 	echo "ERROR: No input file supplied"
     fi
-    	   
 }
+
 
 #Run program
-variantEvalRun () {
-    
-    if [[ $# -ge 1 ]]; then
-	#then
-	output $1
-	echo $OUT
-	
-	$GATK -R $REF -T VariantEval \
-        -D $dbsnp \
-	-comp $exac \
-	-eval $1 \
-	-o $OUT.eval.gatkreport\
-	-L $bed\
-        -ip $PADDING
-    else
-	echo "ERROR: No input file supplied"
-    fi
-    echo "variantEval run exit status $?"	
-
-
+covHistRun () {
+    mkdir hist_cov
+    module load bedtools
+    file=$1
+    out=$(basename "$file")
+    hist="hist_cov/"$out".hist.all.txt"
+    echo "bedfile used $bed"
+    echo $file
+    bedtools coverage -hist -abam $file -b $bed  | grep ^all > $hist 
 }
-

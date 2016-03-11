@@ -14,49 +14,40 @@ PWD=`pwd`
 PWD=${PWD%/}
 : ${outdir:=$PWD}
 
+
+
 #-----------------------------------------
 # Function: variantsEval
-# Runs GATK variant evaluation
+# Runs bedtools histograms
 #
 
-variantEval () {
+callableLoci () {
     if [[ $# -ge 1 ]]; then
 	case "$1" in
 	    run) shift
-		 variantEvalRun "$1";
+	        callableLociRun "$1";
 		 ;;
-	    depend) dependVariantEval;
+	    depend) dependCallableLoci;
 		    ;;
-	    *) echo "ERROR. run as: variantEval depend/run ";
+	    *) echo "ERROR. run as: callableLoci depend/run ";
 	       exit 1
 	       ;;
 	esac
     else
 	echo "ERROR: No input file supplied"
     fi
-    	   
 }
+
 
 #Run program
-variantEvalRun () {
-    
-    if [[ $# -ge 1 ]]; then
-	#then
-	output $1
-	echo $OUT
-	
-	$GATK -R $REF -T VariantEval \
-        -D $dbsnp \
-	-comp $exac \
-	-eval $1 \
-	-o $OUT.eval.gatkreport\
-	-L $bed\
-        -ip $PADDING
-    else
-	echo "ERROR: No input file supplied"
-    fi
-    echo "variantEval run exit status $?"	
-
+callableLociRun () {
+    mkdir CallableLoci
+    file=$1
+    out=$(basename "$file")
+    $GATK -T CallableLoci -R $REF \
+	-I $file \
+	-L $bed \
+	-summary CallableLoci/$out.txt \
+	-o CallableLoci/$out.status.bed
 
 }
-

@@ -2,10 +2,10 @@
 #
 # Author: Gustav 
 # 
+#
+#
 #-----------------------------------------
-#
 #source configurations
-#
 
 STAGEDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source $STAGEDIR/../../configDir/config.sh
@@ -14,20 +14,23 @@ PWD=`pwd`
 PWD=${PWD%/}
 : ${outdir:=$PWD}
 
+
 #-----------------------------------------
-# Function: variantsEval
-# Runs GATK variant evaluation
+#
+# Split a vcf after typ e.g. SNP or INDEL
 #
 
-variantEval () {
+selectType () {
+
     if [[ $# -ge 1 ]]; then
 	case "$1" in
 	    run) shift
-		 variantEvalRun "$1";
+		 selectTypeRun "$1";
 		 ;;
-	    depend) dependVariantEval;
+	    depend) shift
+		    dependSelectType "$1";
 		    ;;
-	    *) echo "ERROR. run as: variantEval depend/run ";
+	    *) echo "ERROR. run as: selectType depend/run ";
 	       exit 1
 	       ;;
 	esac
@@ -37,26 +40,19 @@ variantEval () {
     	   
 }
 
-#Run program
-variantEvalRun () {
-    
+#Run selectVariants
+selectTypeRun () {
+
     if [[ $# -ge 1 ]]; then
-	#then
-	output $1
-	echo $OUT
-	
-	$GATK -R $REF -T VariantEval \
-        -D $dbsnp \
-	-comp $exac \
-	-eval $1 \
-	-o $OUT.eval.gatkreport\
-	-L $bed\
-        -ip $PADDING
+	vcf=$1
+	output $vcf
+	OUT=${OUT%.vcf}.$TYPE.vcf
+	$GATK -T SelectVariants -R $REF -V $vcf \
+	-selectType $TYPE -o $OUT
     else
 	echo "ERROR: No input file supplied"
     fi
-    echo "variantEval run exit status $?"	
-
+    echo "selectType run exit status $?"	
 
 }
 

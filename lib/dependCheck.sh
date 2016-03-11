@@ -9,6 +9,15 @@
 # Library stages.sh
 #------------------------------------------
 
+variableCheck () {
+    if [ ! $1 ]; then 
+	echo "ERROR: A variable has no value";
+	exit 1;
+    else 
+	echo "var is set to $1"; 
+    fi
+}
+
 command_exists () {
     
     type "$1" &> /dev/null ;
@@ -100,4 +109,45 @@ dependVariantEval () {
     echo "dependencies for VariantEval: OK"
 }
 
+#--------------------------------------------
+#check dependencies for covHist
+dependCovHist () {
+    #checking if bedtools is installed
+    command_exists bedtools
+    # check bedfile
+    fileCheck $bed
+    echo $bed
+    echo "dependencies for covHist: OK"
+}
+
+#--------------------------------------------
+#check dependencies for callabeLoci
+dependCallableLoci () {
+    #checking typical GATK depenencies
+    dependGATK
+    fileCheck $bed
+    echo $bed
+    echo "dependencies for callableLoci: OK"
+}
+
+
+#--------------------------------------------
+#check dependencies for GATK select variants selectType
+dependSelectType () {
+    #checking typical GATK depenencies
+    dependGATK
+    # tool specific dependencies here
+    echo "Type selected:"$TYPE
+    variableCheck $TYPE
+    echo "dependencies for SelectType: OK"
+}
+
+dependvariantFiltration () {
+    #checking typical GATK depenencies
+    dependGATK
+    # tool specific dependencies here
+    echo "filterExpression:" $filterExpression
+    variableCheck $filterExpression
+    echo "dependencies for variantFiltration: OK"
+}
 
