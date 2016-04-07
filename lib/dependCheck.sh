@@ -30,7 +30,7 @@ command_exists () {
 fileCheck () {
     FILE=$1
     if [[ $# -eq "" ]]; then
-	echo "ERROR: A variable has no value. Check config file"
+	echo "ERROR: A file variable, has no value. Check config file"
 	exit 1
     fi
     

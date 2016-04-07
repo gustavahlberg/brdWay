@@ -3,7 +3,7 @@
 #project root
 CONFDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ROOT="$CONFDIR/.."
-
+GRPROOT="$ROOT/../.."
 
 #================================================
 # Default PBS submission settings
@@ -23,7 +23,11 @@ QUEUE=${QUEUE:-batch}
 
 #================================================
 # RESOURCES PATH
+<<<<<<< HEAD
 RESRC=${RESRC:-"$ROOT/../RESOURCES"}
+=======
+RESRC="$GRPROOT/data/RESOURCES/"
+>>>>>>> be2bd519283f69974155bf7fcf6f0035015f2976
 
 #Resources
 dbsnp="$RESRC/All.vcf.gz"
@@ -63,7 +67,10 @@ REF=${REF:-"$RESRC/REF/hs.build37.1.fa"}
 TMPCONFDIR="$ROOT/temp"
 
 #==================================================
-# Set location for Tools
-GATK="java -XX:+UseParallelGC -XX:ParallelGCThreads=8 -Xmx8g -Djava.io.tmpdir=$ROOT/temp -jar $HOME/GATK_latest/GenomeAnalysisTK.jar"
-GenomeAnalysisToolKit="$HOME/GATK_latest/GenomeAnalysisTK.jar"
+# Set location for Tool
+#GenomeAnalysisToolKit="$GRPROOT/TOOLS/GATK_latest/GenomeAnalysisTK.jar"
+
+GenomeAnalysisToolKit=$HOME/GATK_latest/GenomeAnalysisTK.jar
+GATK="java -XX:+UseParallelGC -XX:ParallelGCThreads=8 -Xmx8g -Djava.io.tmpdir=$ROOT/temp -jar $GenomeAnalysisToolKit"
+
 
