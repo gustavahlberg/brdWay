@@ -53,7 +53,7 @@ selectVariantSampleRun () {
 	$GATK -R $REF -T SelectVariants -V $vcf\
 	-o $OUT\
 	-nt $NT\
-	--sample_file  $LIST
+	--sample_file $LIST
     else
 	echo "ERROR: No input file supplied"
     fi

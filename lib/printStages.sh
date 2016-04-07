@@ -6,7 +6,7 @@
 printStages () {
     echo "variantsToTable: ....."
     echo "selectVariantRegion: arg1= vcf ,arg2= bed, arg3= no cores"
-    echo "selectVariantsSample":
+    echo "selectVariantSample":
     echo "selectVariantsRemoveSample":
     echo "variantEval"
     echo "covHist: makes coverage histograms tables with bedtools"

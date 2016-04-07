@@ -23,7 +23,7 @@ QUEUE=${QUEUE:-batch}
 
 #================================================
 # RESOURCES PATH
-RESRC="$ROOT/../RESOURCES"
+RESRC=${RESRC:-"$ROOT/../RESOURCES"}
 
 #Resources
 dbsnp="$RESRC/All.vcf.gz"
@@ -44,7 +44,7 @@ bed=${bed:-$RESRC/Broad.human.exome.b37.interval_list}
 PADDING=${PADDING:-100}
 
 # REF GENOME
-REF="$RESRC/REF/hs.build37.1.fa"
+REF=${REF:-"$RESRC/REF/hs.build37.1.fa"}
 
 
 #=================================================
