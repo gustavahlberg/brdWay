@@ -23,11 +23,15 @@ QUEUE=${QUEUE:-batch}
 
 #================================================
 # RESOURCES PATH
-<<<<<<< HEAD
+ <<<<<<< HEAD
 RESRC=${RESRC:-"$ROOT/../RESOURCES"}
 =======
 RESRC="$GRPROOT/data/RESOURCES/"
 >>>>>>> be2bd519283f69974155bf7fcf6f0035015f2976
+
+
+
+
 
 #Resources
 dbsnp="$RESRC/All.vcf.gz"
