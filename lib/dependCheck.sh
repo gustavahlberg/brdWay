@@ -142,6 +142,8 @@ dependSelectType () {
     echo "dependencies for SelectType: OK"
 }
 
+#--------------------------------------------
+#check dependencies for GATK hard filtering
 dependvariantFiltration () {
     #checking typical GATK depenencies
     dependGATK
@@ -150,4 +152,53 @@ dependvariantFiltration () {
     variableCheck $filterExpression
     echo "dependencies for variantFiltration: OK"
 }
+#--------------------------------------------
+#check dependencies for GATK VQSR variant recalibrator
+
+dependvariantRecalibrator () {
+    #checking typical GATK depenencies
+    dependGATK
+    # tool specific dependencies here
+    variableCheck $TYPE
+
+    case $TYPE in
+	SNP) dependvariantRecalibratorSNP "$1";
+	    ;;
+	INDEL) dependvariantRecalibratorINDEL $1;
+	    ;;
+	*) echo "ERROR. set TYPE var to \"SNP\" or \"INDEL\"";
+	    exit 1
+	    ;;
+    esac
+
+    echo "dependencies for variantRecalibrator: OK"
+}
+
+dependvariantRecalibratorSNP () {
+    fileCheck $HAPMAP
+    fileCheck $OMNI
+    fileCheck $G1K
+    fileCheck $dbsnp138
+
+}
+
+dependvariantRecalibratorINDEL () {
+    fileCheck $MILLS
+}
+
+#--------------------------------------------
+#check dependencies for GATK VQSR apply recalibration
+
+dependapplyRecalibration () {
+    #checking typical GATK depenencies
+    dependGATK
+    # tool specific dependencies here
+    fileCheck $RECAL
+    fileCheck $TRANCHES
+    variableCheck $FILTERLEVEL
+    variableCheck $TYPE
+    echo "dependencies for applyRecalibration: OK"
+}
+
+#--------------------------------------------
 

@@ -6,7 +6,10 @@ ROOT="$CONFDIR/.."
 GRPROOT="$ROOT/../.."
 
 #================================================
+#
 # Default PBS submission settings
+#
+#
 
 #job name
 NAME=${NAME:-$INPUT}
@@ -20,22 +23,40 @@ MEMORY=${MEMORY:-4}
 QUEUE=${QUEUE:-batch}
 
 
+#================================================
+#
+# Some default variables
+#
+
+
+PADDING=${PADDING:-100} #set default padding
+ANNOTATIONS_SNPS=${ANNOTATIONS_SNPS:-"-an QD -an FS -an SOR -an MQ -an MQRankSum -an ReadPosRankSum -an InbreedingCoeff"}
+ANNOTATIONS_INDELS=${ANNOTATIONS_INDELS:-"-an QD -an FS -an SOR -an MQRankSum -an ReadPosRankSum -an InbreedingCoeff"}
+nt=${nt:-1}
 
 #================================================
+#
 # RESOURCES PATH
- <<<<<<< HEAD
-RESRC=${RESRC:-"$ROOT/../RESOURCES"}
-=======
-RESRC="$GRPROOT/data/RESOURCES/"
->>>>>>> be2bd519283f69974155bf7fcf6f0035015f2976
+#
+
+RESRC=${RESRC:-"$GRPROOT/data/RESOURCES/"}
 
 
+#================================================
+#
+# RESOURCES GATK VQSR
+#
 
-
+HAPMAP=${HAPMAP:-$RESRC/hapmap_3.3.b37.vcf}
+OMNI=${OMNI:-$RESRC/1000G_omni2.5.b37.vcf}
+G1K=${G1K:-$RESRC/1000G_phase3_v4_20130502.sites.vcf.gz}
+dbsnp138=${dnsnp138:-$RESRC/dbsnp_138.b37.vcf}
+MILLS=$RESRC/Mills_and_1000G_gold_standard.indels.b37.vcf
 
 #Resources
 dbsnp="$RESRC/All.vcf.gz"
 exac="$RESRC/exac/release0.3/ExAC.r0.3.sites.vep.vcf.gz"
+
 #g1k="$RESRC/exac/ALL.wgs.phase3_shapeit2_mvncall_integrated_v5.20130502.sites.vcf.gz"
 #mills="$RESRC/Mills_and_1000G_gold_standard.indels.b37.vcf"
 #dbNSFP="$RESRC/dbNSFP2.9.txt.gz"
@@ -48,8 +69,6 @@ exac="$RESRC/exac/release0.3/ExAC.r0.3.sites.vep.vcf.gz"
 #bed file default if any
 bed=${bed:-$RESRC/Broad.human.exome.b37.interval_list}
 
-#set default padding
-PADDING=${PADDING:-100}
 
 # REF GENOME
 REF=${REF:-"$RESRC/REF/hs.build37.1.fa"}

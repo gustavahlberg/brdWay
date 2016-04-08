@@ -1,4 +1,3 @@
-#!/bin/bash
 #
 # Author: Gustav 
 # 
@@ -20,17 +19,17 @@ PWD=${PWD%/}
 # Split a vcf after typ e.g. SNP or INDEL
 #
 
-variantFiltration () {
+applyRecalibration () {
 
     if [[ $# -ge 1 ]]; then
 	case "$1" in
 	    run) shift
-		variantFiltrationRun "$1";
+		applyRecalibrationRun "$1";
 		 ;;
 	    depend) shift
-		    dependvariantFiltration "$1";
+		    dependapplyRecalibration "$1";
 		    ;;
-	    *) echo "ERROR. run as: variantFiltration depend/run ";
+	    *) echo "ERROR. run as: applyRecalibration depend/run ";
 	       exit 1
 	       ;;
 	esac
@@ -40,20 +39,31 @@ variantFiltration () {
     	   
 }
 
-#Run selectVariants
-variantFiltrationRun () {
+#Run applyRecalibration
+applyRecalibrationRun () {
     if [[ $# -ge 1 ]]; then
 	vcf=$1
 	output $vcf
 	echo $filterExpression
-	OUT=${OUT%.vcf}.$HARDFILTER.vcf
-	$GATK -T VariantFiltration -R $REF -V $vcf \
-	--filterExpression "$filterExpression" \
-        --filterName $HARDFILTER \
-	-o $OUT
+	OUT=${OUT%.vcf}.recal$TYPE.vcf
+	OUTPUT=${OUTPUT:-$OUT}
+	
+
+	$GATK -T ApplyRecalibration -R $REF \
+	-input $vcf \ 
+	-mode $TYPE \ 
+	--ts_filter_level $FILTERLEVEL \ 
+	-recalFile $RECAL \ 
+	-tranchesFile $TRANCHES \ 
+	-o $OUTPUT \
+	-nt $nt
+
+
+
     else
 	echo "ERROR: No input file supplied"
     fi
-    echo "variantFiltration run exit status $?"	
+    echo "applyRecalibrationRun run exit status $?"	
 
 }
+
