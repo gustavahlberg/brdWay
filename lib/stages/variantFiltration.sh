@@ -47,10 +47,13 @@ variantFiltrationRun () {
 	output $vcf
 	echo $filterExpression
 	OUT=${OUT%.vcf}.$HARDFILTER.vcf
+	OUTPUT=${OUTPUT:-$OUT}
+
 	$GATK -T VariantFiltration -R $REF -V $vcf \
 	--filterExpression "$filterExpression" \
         --filterName $HARDFILTER \
-	-o $OUT
+	-o $OUTPUT \
+	-nt $nt
     else
 	echo "ERROR: No input file supplied"
     fi

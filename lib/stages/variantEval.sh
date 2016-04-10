@@ -46,12 +46,13 @@ variantEvalRun () {
 	echo $OUT
 	
 	$GATK -R $REF -T VariantEval \
-        -D $dbsnp \
+        -D $dbSnp_ExOver129 \
 	-comp $exac \
 	-eval $1 \
-	-o $OUT.eval.gatkreport\
-	-L $bed\
-        -ip $PADDING
+	-o $OUT.eval.gatkreport \
+	-L $bed \
+        -ip $PADDING \
+	-nt $nt
     else
 	echo "ERROR: No input file supplied"
     fi

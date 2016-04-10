@@ -47,18 +47,18 @@ selectVariantRegionRun () {
     if [[ $# -ge 1 ]]; then
 	#then
 	vcf=$1
-	#bed=$2
 	#default cores 4
 	NT=${NT:-4}
-	in=$(basename $vcf)
-	out=${in%.*}.selectRegion.vcf
+	output $vcf
+	OUT=${OUT%.vcf}.selectRegion.vcf
+	OUTPUT=${OUTPUT:-$OUT}
 
-	$GATK -R $REF -T SelectVariants -V $vcf\
-	-L $bed\
-	-o $outdir/$out\
-	-nt $NT\
-	-selectType INDEL -selectType SNP\
-	--interval_padding 50
+	$GATK -R $REF -T SelectVariants -V $vcf \
+	-L $bed \
+	-o $OUTPUT \
+	-nt $NT \
+	-selectType INDEL -selectType SNP \
+	--interval_padding $PADDING
     else
 	echo "ERROR: No input file supplied"
     fi

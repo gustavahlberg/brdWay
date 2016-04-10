@@ -78,10 +78,10 @@ variantRecalibratorRunSNP () {
 	-resource:hapmap,known=false,training=true,truth=true,prior=15.0 $HAPMAP \
 	-resource:omni,known=false,training=true,truth=true,prior=12.0 $OMNI \
 	-resource:1000G,known=false,training=true,truth=false,prior=10.0 $G1K \
-	-resource:dbsnp,known=true,training=false,truth=false,prior=2.0 $dbsnp138 \
+	-resource:dbsnp,known=true,training=false,truth=false,prior=2.0 $dbsnp \
 	$ANNOTATIONS_SNPS \
 	-mode $TYPE \
-	-tranche 100.0 -tranche 99.9 -tranche 99.0 -tranche 90.0 \
+	-tranche 100.0 -tranche 99.9 -tranche 99.5 -tranche 99.0 -tranche 90.0 \
 	-recalFile $OUTPUT.recalibrate_SNP.recal \
 	-tranchesFile $OUTPUT.recalibrate_SNP.tranches \
 	-rscriptFile $OUTPUT.recalibrate_SNP_plots.R \
@@ -114,7 +114,7 @@ variantRecalibratorRunINDEL () {
 	    -resource:mills,known=true,training=true,truth=true,prior=12.0 $MILLS \
 	    $ANNOTATIONS_INDELS \
 	    -mode $TYPE \
-	    -tranche 100.0 -tranche 99.9 -tranche 99.0 -tranche 90.0 \
+	    -tranche 100.0 -tranche 99.9 -tranch 99.5 -tranche 99.0 -tranche 90.0 \
 	    --maxGaussians 4 \
 	    -recalFile $OUTPUT.recalibrate_INDEL.recal \
 	    -tranchesFile $OUTPUT.recalibrate_INDEL.tranches \

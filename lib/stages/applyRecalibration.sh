@@ -44,17 +44,17 @@ applyRecalibrationRun () {
     if [[ $# -ge 1 ]]; then
 	vcf=$1
 	output $vcf
-	echo $filterExpression
+	
 	OUT=${OUT%.vcf}.recal$TYPE.vcf
 	OUTPUT=${OUTPUT:-$OUT}
 	
 
 	$GATK -T ApplyRecalibration -R $REF \
-	-input $vcf \ 
-	-mode $TYPE \ 
-	--ts_filter_level $FILTERLEVEL \ 
-	-recalFile $RECAL \ 
-	-tranchesFile $TRANCHES \ 
+	-input $vcf \
+	-mode $TYPE \
+	--ts_filter_level $FILTERLEVEL \
+	-recalFile $RECAL \
+	-tranchesFile $TRANCHES \
 	-o $OUTPUT \
 	-nt $nt
 

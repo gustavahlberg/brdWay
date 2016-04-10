@@ -67,7 +67,7 @@ run () {
 
 #run on cluster
 runOnCluster () {
-    NAME=${NAME:-$1}
+    NAME=${NAME:-$(basename $1)}
     jobID=`sendPBS $1`;    
     #jobID=`customPBS $1`;    
 

@@ -33,7 +33,7 @@ PADDING=${PADDING:-100} #set default padding
 ANNOTATIONS_SNPS=${ANNOTATIONS_SNPS:-"-an QD -an FS -an SOR -an MQ -an MQRankSum -an ReadPosRankSum -an InbreedingCoeff"}
 ANNOTATIONS_INDELS=${ANNOTATIONS_INDELS:-"-an QD -an FS -an SOR -an MQRankSum -an ReadPosRankSum -an InbreedingCoeff"}
 nt=${nt:-1}
-
+HARDFILTER=${HARDFILTER:-"HD"}
 #================================================
 #
 # RESOURCES PATH
@@ -47,16 +47,16 @@ RESRC=${RESRC:-"$GRPROOT/data/RESOURCES/"}
 # RESOURCES GATK VQSR
 #
 
-HAPMAP=${HAPMAP:-$RESRC/hapmap_3.3.b37.vcf}
-OMNI=${OMNI:-$RESRC/1000G_omni2.5.b37.vcf}
-G1K=${G1K:-$RESRC/1000G_phase3_v4_20130502.sites.vcf.gz}
-dbsnp138=${dnsnp138:-$RESRC/dbsnp_138.b37.vcf}
+HAPMAP=${HAPMAP:-$RESRC/hapmap_3.3.b37.sites.vcf}
+OMNI=${OMNI:-$RESRC/1000G_omni2.5.b37.sites.vcf}
+G1K=${G1K:-$RESRC/1000G_phase1.snps.high_confidence.b37.vcf}
+#dbsnp138=${dnsnp138:-$RESRC/dbsnp_138.b37.vcf}
 MILLS=$RESRC/Mills_and_1000G_gold_standard.indels.b37.vcf
 
 #Resources
 dbsnp="$RESRC/All.vcf.gz"
 exac="$RESRC/exac/release0.3/ExAC.r0.3.sites.vep.vcf.gz"
-
+dbSnp_ExOver129=$RESRC/dbsnp_138.b37.excluding_sites_after_129.vcf.gz
 #g1k="$RESRC/exac/ALL.wgs.phase3_shapeit2_mvncall_integrated_v5.20130502.sites.vcf.gz"
 #mills="$RESRC/Mills_and_1000G_gold_standard.indels.b37.vcf"
 #dbNSFP="$RESRC/dbNSFP2.9.txt.gz"
@@ -93,7 +93,7 @@ TMPCONFDIR="$ROOT/temp"
 # Set location for Tool
 #GenomeAnalysisToolKit="$GRPROOT/TOOLS/GATK_latest/GenomeAnalysisTK.jar"
 
-GenomeAnalysisToolKit=$HOME/GATK_latest/GenomeAnalysisTK.jar
+GenomeAnalysisToolKit=${GenomeAnalysisToolKit:-$HOME/GATK_latest/GenomeAnalysisTK.jar}
 GATK="java -XX:+UseParallelGC -XX:ParallelGCThreads=8 -Xmx8g -Djava.io.tmpdir=$ROOT/temp -jar $GenomeAnalysisToolKit"
 
 

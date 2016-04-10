@@ -178,7 +178,7 @@ dependvariantRecalibratorSNP () {
     fileCheck $HAPMAP
     fileCheck $OMNI
     fileCheck $G1K
-    fileCheck $dbsnp138
+    fileCheck $dbsnp
 
 }
 
