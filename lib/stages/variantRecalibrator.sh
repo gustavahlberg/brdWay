@@ -69,6 +69,7 @@ variantRecalibratorRunSNP () {
 	vcf=$1
 	output $vcf
 	echo $filterExpression
+	OUT=${OUT%.gz}
 	OUT=${OUT%.vcf}
 	OUTPUT=${OUTPUT:-$OUT}
 	echo $ANNOTATIONS_SNPS
@@ -105,21 +106,24 @@ variantRecalibratorRunINDEL () {
 	vcf=$1
 	output $vcf
 	echo $filterExpression
+	OUT=${OUT%.gz}
 	OUT=${OUT%.vcf}
 	OUTPUT=${OUTPUT:-$OUT}
 	nt=${nt:-1}
+
 
 	$GATK -T VariantRecalibrator -R $REF \
 	    -input $vcf \
 	    -resource:mills,known=true,training=true,truth=true,prior=12.0 $MILLS \
 	    $ANNOTATIONS_INDELS \
 	    -mode $TYPE \
-	    -tranche 100.0 -tranche 99.9 -tranch 99.5 -tranche 99.0 -tranche 90.0 \
+	    -tranche 100.0 -tranche 99.9 -tranche 99.5 -tranche 99.0 -tranche 90.0 \
 	    --maxGaussians 4 \
 	    -recalFile $OUTPUT.recalibrate_INDEL.recal \
 	    -tranchesFile $OUTPUT.recalibrate_INDEL.tranches \
 	    -rscriptFile $OUTPUT.recalibrate_INDEL_plots.R \
 	    -nt $nt
+
 
     else
 	echo "ERROR: No input file supplied"

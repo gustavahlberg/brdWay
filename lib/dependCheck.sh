@@ -201,4 +201,24 @@ dependapplyRecalibration () {
 }
 
 #--------------------------------------------
+#--------------------------------------------
+#check dependencies for GATK VQSR apply recalibration
 
+dependAnnotateVcf () {
+    command_exists java
+    variableCheck $RUNEFF
+    variableCheck $RUNDBNSFP
+    
+    if [ $RUNEFF="TRUE" ]; then
+	fileCheck $snpEff
+    fi
+
+    if [ $RUNDBNSFP="TRUE" ]; then
+	fileCheck $dbNSFP
+	fileCheck $snpSift
+    fi
+
+    echo "dependencies for annotateVcf: OK"
+}
+
+  

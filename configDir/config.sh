@@ -4,6 +4,7 @@
 CONFDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ROOT="$CONFDIR/.."
 GRPROOT="$ROOT/../.."
+SCRATCH=$GRPROOT/scratch
 
 #================================================
 #
@@ -34,6 +35,12 @@ ANNOTATIONS_SNPS=${ANNOTATIONS_SNPS:-"-an QD -an FS -an SOR -an MQ -an MQRankSum
 ANNOTATIONS_INDELS=${ANNOTATIONS_INDELS:-"-an QD -an FS -an SOR -an MQRankSum -an ReadPosRankSum -an InbreedingCoeff"}
 nt=${nt:-1}
 HARDFILTER=${HARDFILTER:-"HD"}
+RUNEFF=${RUNEFF:-TRUE}
+RUNDBNSFP=${RUNDBNSFP:-TRUE}
+
+#dbNSFP annotation string
+AnnoDbNSFP=${AnnoDbNSFP:-'1000Gp1_AC,1000Gp1_AF,1000Gp1_EUR_AF,ESP6500_EA_AF,GERP++_RS,Uniprot_acc,MutationTaster_pred,FATHMM_pred,SIFT_pred,SIFT_converted_rankscore,Polyphen2_HDIV_pred,Polyphen2_HDIV_rankscore,Polyphen2_HVAR_rankscore,Polyphen2_HVAR_pred,MutationAssessor_rankscore,MutationAssessor_pred,LRT_converted_rankscore,LRT_pred,LRT_Omega,ExAC_Adj_AF,ExAC_NFE_AF,clinvar_clnsig,clinvar_trait,PROVEAN_pred,GERP++_NR,SIFT_score,FATHMM_score,MetaSVM_score,MetaSVM_rankscore,MetaSVM_pred,Reliability_index,PROVEAN_score,phyloP46way_primate,phyloP100way_vertebrate'}
+
 #================================================
 #
 # RESOURCES PATH
@@ -58,8 +65,8 @@ dbsnp="$RESRC/All.vcf.gz"
 exac="$RESRC/exac/release0.3/ExAC.r0.3.sites.vep.vcf.gz"
 dbSnp_ExOver129=$RESRC/dbsnp_138.b37.excluding_sites_after_129.vcf.gz
 #g1k="$RESRC/exac/ALL.wgs.phase3_shapeit2_mvncall_integrated_v5.20130502.sites.vcf.gz"
-#mills="$RESRC/Mills_and_1000G_gold_standard.indels.b37.vcf"
-#dbNSFP="$RESRC/dbNSFP2.9.txt.gz"
+
+dbNSFP=${dbNSFP:-"$RESRC/dbNSFP2.9.txt.gz"}
 
 #g1k.indel = "$RESRC/1000G_phase1.indels.b37.vcf"
 
@@ -96,4 +103,10 @@ TMPCONFDIR="$ROOT/temp"
 GenomeAnalysisToolKit=${GenomeAnalysisToolKit:-$HOME/GATK_latest/GenomeAnalysisTK.jar}
 GATK="java -XX:+UseParallelGC -XX:ParallelGCThreads=8 -Xmx8g -Djava.io.tmpdir=$ROOT/temp -jar $GenomeAnalysisToolKit"
 
+
+#==================================================
+# Set location for SnpEff
+
+snpEff=${snpEff:-$GRPROOT/TOOLS/snpEff/snpEff.jar}
+snpSift=${snpSift:-$GRPROOT/TOOLS/snpEff/SnpSift.jar}
 
