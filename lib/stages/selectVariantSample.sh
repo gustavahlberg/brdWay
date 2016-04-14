@@ -45,15 +45,19 @@ selectVariantSampleRun () {
 
     if [[ $# -ge 1 ]]; then
 	vcf=$1
+	output $vcf
+	OUT=${OUT%.vcf}.selectedSamples.vcf
+	OUTPUT=${OUTPUT:-$OUT}
+
 	#default cores 1
 	: ${NT:=1}
 	#in=$(basename $vcf)
 	#out=${in%.*}.selectSamples.vcf
 
-	$GATK -R $REF -T SelectVariants -V $vcf\
-	-o $OUT\
-	-nt $NT\
-	--sample_file $LIST
+	$GATK -R $REF -T SelectVariants -V $vcf \
+	      -o $OUTPUT \
+	      -nt $NT \
+	      --sample_file $LIST
     else
 	echo "ERROR: No input file supplied"
     fi
