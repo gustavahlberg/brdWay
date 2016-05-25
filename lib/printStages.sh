@@ -13,5 +13,6 @@ printStages () {
     echo "callableLoci: run GATK callable loci"
     echo "applyRecalibration: run GATK ApplyRecalibration"
     echo "variantRecalibrattor: run GATK VariantRecalibrator"
+    echo "cutNtrim: run cutadapt and prinseq-lite"
     exit 0
 }

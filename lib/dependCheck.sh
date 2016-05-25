@@ -202,7 +202,7 @@ dependapplyRecalibration () {
 
 #--------------------------------------------
 #--------------------------------------------
-#check dependencies for GATK VQSR apply recalibration
+#check dependencies for SnpEff
 
 dependAnnotateVcf () {
     command_exists java
@@ -222,3 +222,28 @@ dependAnnotateVcf () {
 }
 
   
+#--------------------------------------------
+# check dependecies for cutNtrim, cutadapt and prinseq
+dependCutNTrim () {
+    #fileCheck $1
+
+    if [ $RUNCUT="TRUE" ]; then
+	command_exists cutadapt
+    fi
+
+    if [ $RUNTRIM="TRUE" ]; then
+	command_exists prinseq-lite.pl	
+    fi
+
+    echo "dependencies for cutNtrim: OK"
+}
+
+#--------------------------------------------
+# check dependecies for cutNtrim, cutadapt and prinseq
+dependAlignBwa () {
+    #fileCheck $1
+    command_exists bwa
+    command_exists samtools
+    fileCheck $REF
+    echo "dependencies for alignBwa: OK"
+}

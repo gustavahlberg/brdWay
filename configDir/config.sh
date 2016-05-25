@@ -28,7 +28,7 @@ QUEUE=${QUEUE:-batch}
 #
 # Some default variables
 #
-
+OUTPATH=${OUTPATH:-""}
 
 PADDING=${PADDING:-100} #set default padding
 ANNOTATIONS_SNPS=${ANNOTATIONS_SNPS:-"-an QD -an FS -an SOR -an MQ -an MQRankSum -an ReadPosRankSum -an InbreedingCoeff"}
@@ -38,9 +38,34 @@ HARDFILTER=${HARDFILTER:-"HD"}
 RUNEFF=${RUNEFF:-TRUE}
 RUNDBNSFP=${RUNDBNSFP:-TRUE}
 
+RUNCUT=${RUNCUT:-TRUE}
+RUNTRIM=${RUNTRIM:-TRUE}
+
+
 #dbNSFP annotation string
 AnnoDbNSFP=${AnnoDbNSFP:-'1000Gp1_AC,1000Gp1_AF,1000Gp1_EUR_AF,ESP6500_EA_AF,GERP++_RS,Uniprot_acc,MutationTaster_pred,FATHMM_pred,SIFT_pred,SIFT_converted_rankscore,Polyphen2_HDIV_pred,Polyphen2_HDIV_rankscore,Polyphen2_HVAR_rankscore,Polyphen2_HVAR_pred,MutationAssessor_rankscore,MutationAssessor_pred,LRT_converted_rankscore,LRT_pred,LRT_Omega,ExAC_Adj_AF,ExAC_NFE_AF,clinvar_clnsig,clinvar_trait,PROVEAN_pred,GERP++_NR,SIFT_score,FATHMM_score,MetaSVM_score,MetaSVM_rankscore,MetaSVM_pred,Reliability_index,PROVEAN_score,phyloP46way_primate,phyloP100way_vertebrate'}
 
+#cutadapt
+adapter_a=${adapter_a:-'AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC'}
+adapter_A=${adapter_A:-'AGATCGGAAGAGC'}
+m=${m:-30} 
+O=${O:-3}
+q=${q:-20}
+qualityBase=${qualityBase:-33}
+
+#prinseq
+
+prinseq=$HOME/bin/prinseq-lite.pl
+minLen=${minLen:-21}
+minQmean=${minQmean:-20}
+trimQright=${trimQright:-5}
+trimQleft=${trimQleft:-5}
+customParam=${customParam:-"A 15;T 15;"}
+lcMethod=${lcMethod:-"dust"}
+lcThresh=${lcThresh:-60}
+
+#CMPfastq.pl
+CMPfastq=$HOME/bin/cmpfastq.pl
 #================================================
 #
 # RESOURCES PATH
@@ -109,4 +134,9 @@ GATK="java -XX:+UseParallelGC -XX:ParallelGCThreads=8 -Xmx8g -Djava.io.tmpdir=$R
 
 snpEff=${snpEff:-$GRPROOT/TOOLS/snpEff/snpEff.jar}
 snpSift=${snpSift:-$GRPROOT/TOOLS/snpEff/SnpSift.jar}
+
+#==================================================
+# Set location for prinseq-lite
+prinseq=...
+
 
