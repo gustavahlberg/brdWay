@@ -38,9 +38,19 @@ HARDFILTER=${HARDFILTER:-"HD"}
 RUNEFF=${RUNEFF:-TRUE}
 RUNDBNSFP=${RUNDBNSFP:-TRUE}
 
+#cutNtrim
 RUNCUT=${RUNCUT:-TRUE}
 RUNTRIM=${RUNTRIM:-TRUE}
 
+#indelReAln
+RUNINDELALNRECAL=${RUNINDELALNRECAL:-TRUE}
+RUNINDELALNAPPLY=${RUNINDELALNAPPLY:-TRUE}
+
+#bqsr
+RUNBQSRRECAL=${RUNBQSRRECAL:-TRUE}
+RUNBQSRAPPLY=${RUNBQSRAPPLY:-TRUE}
+RUNBQSRRECALAFTER=${RUNBQSRRECALAFTER:-TRUE}
+RUNBQSRANALYSCOVAR=${RUNBQSRANALYSCOVAR:-TRUE}
 
 #dbNSFP annotation string
 AnnoDbNSFP=${AnnoDbNSFP:-'1000Gp1_AC,1000Gp1_AF,1000Gp1_EUR_AF,ESP6500_EA_AF,GERP++_RS,Uniprot_acc,MutationTaster_pred,FATHMM_pred,SIFT_pred,SIFT_converted_rankscore,Polyphen2_HDIV_pred,Polyphen2_HDIV_rankscore,Polyphen2_HVAR_rankscore,Polyphen2_HVAR_pred,MutationAssessor_rankscore,MutationAssessor_pred,LRT_converted_rankscore,LRT_pred,LRT_Omega,ExAC_Adj_AF,ExAC_NFE_AF,clinvar_clnsig,clinvar_trait,PROVEAN_pred,GERP++_NR,SIFT_score,FATHMM_score,MetaSVM_score,MetaSVM_rankscore,MetaSVM_pred,Reliability_index,PROVEAN_score,phyloP46way_primate,phyloP100way_vertebrate'}
@@ -76,14 +86,15 @@ RESRC=${RESRC:-"$GRPROOT/data/RESOURCES/"}
 
 #================================================
 #
-# RESOURCES GATK VQSR
+# RESOURCES GATK VQSR, BQSR, IndelRealignment
 #
 
 HAPMAP=${HAPMAP:-$RESRC/hapmap_3.3.b37.sites.vcf}
 OMNI=${OMNI:-$RESRC/1000G_omni2.5.b37.sites.vcf}
 G1K=${G1K:-$RESRC/1000G_phase1.snps.high_confidence.b37.vcf}
+G1Kindel=${G1Kindel:-$RESRC/1000G_phase1.indels.b37.vcf}
 #dbsnp138=${dnsnp138:-$RESRC/dbsnp_138.b37.vcf}
-MILLS=$RESRC/Mills_and_1000G_gold_standard.indels.b37.vcf
+MILLS=${MILLS:-$RESRC/Mills_and_1000G_gold_standard.indels.b37.vcf}
 
 #Resources
 dbsnp="$RESRC/All.vcf.gz"
@@ -125,7 +136,7 @@ TMPCONFDIR="$ROOT/temp"
 # Set location for Tool
 #GenomeAnalysisToolKit="$GRPROOT/TOOLS/GATK_latest/GenomeAnalysisTK.jar"
 
-GenomeAnalysisToolKit=${GenomeAnalysisToolKit:-$HOME/GATK_latest/GenomeAnalysisTK.jar}
+GenomeAnalysisToolKit=${GenomeAnalysisToolKit:-$GRPROOT/TOOLS/GATK_latest/gatk3.4/GenomeAnalysisTK.jar}
 GATK="java -XX:+UseParallelGC -XX:ParallelGCThreads=8 -Xmx8g -Djava.io.tmpdir=$ROOT/temp -jar $GenomeAnalysisToolKit"
 
 
@@ -137,6 +148,8 @@ snpSift=${snpSift:-$GRPROOT/TOOLS/snpEff/SnpSift.jar}
 
 #==================================================
 # Set location for prinseq-lite
-prinseq=...
 
+prinseq=$HOME/bin/prinseq-lite.pl
 
+#==================================================
+# Set location for cmpfastq.pl

@@ -54,27 +54,16 @@ cutNtrimRun () {
 	fastqFwd=$1
 	fastqRev=`echo $fastqFwd |perl -ane 's/_R1_/_R2_/;print $_'`
 
-	if [[ $fastqFwd == *".gz"* ]]; then
-	    gunzip $fastqFwd
-	    fastqFwd=${fastqFwd%.gz}
-	    gunzip $fastqRev
-	    fastqRev=${fastqRev%.gz}
-	fi
-	
-	output $fastqFwd
+	output $1
 	
 	case $RUNCUT in
 	    TRUE)
-		if [ ! -d "cutadaptStat" ]; then
-		    mkdir cutadaptStat;
-		fi
-	
+		
 		cutFwd=$OUTPATH$OUT.cut;
 		cutRev=`echo $cutFwd |perl -ane 's/_R1_/_R2_/;print $_'`;
 		
 		cutadapt -a $adapter_a -A $adapter_A -o $cutFwd -p $cutRev \
-		-m $m -O $O -q $q --quality-base=$qualityBase $fastqFwd $fastqRev \
-		> cutadaptStat/stat.$OUT.cut;
+		 -m $m -O $O -q $q --quality-base=$qualityBase $fastqFwd $fastqRev;
 		echo "running cutadapt"
 		;;
 	    FALSE) 
@@ -87,38 +76,24 @@ cutNtrimRun () {
 		;;
 	esac
 
-	echo "cutadapt finished"
 	
 	case $RUNTRIM in
-	    TRUE)
-		
+	    TRUE) 
 		cutNtrimFwd=$OUTPATH$(basename $cutFwd).trim;
 		cutNtrimRev=`echo $cutNtrimFwd |perl -ane 's/_R1_/_R2_/;print $_'`;
-		
-		if [ ! -d "prins_graph" ]; then
-		    mkdir prins_graph;
-		fi
+		mkdir prins_graph;
 	       
-		echo "running prinseq trimming fwd";
-
-		$HOME/bin/prinseq-lite.pl -fastq $cutFwd \
-		-graph_data prins_graph/$(basename $cutNtrimFwd).graph \
+		$prinseq -fastq $cutFwd -graph_data prins_graph/$(basename $cutNtrimFwd).graph \
 		-min_len $minLen -min_qual_mean $minQmean -trim_qual_right $trimQright \
 		-custom_params $customParam -lc_method $lcMethod \
-		-lc_threshold $lcThresh -trim_qual_left $trimQleft -out_good $cutNtrimFwd \
-		-out_bad $cutNtrimFwd.prinseq_bad;
+		-lc_threshold $lcThresh -trim_qual_left $trimQleft -out_good $cutNtrimFwd;
 
-		echo "running prinseq trimming rev"
-		$HOME/bin/prinseq-lite.pl -fastq $cutRev \
-		-graph_data prins_graph/$(basename $cutNtrimRev).graph \
+		$prinseq -fastq $cutRev -graph_data prins_graph/$(basename $cutNtrimRev).graph \
 		-min_len $minLen -min_qual_mean $minQmean -trim_qual_right $trimQright \
 		-custom_params $customParam -lc_method $lcMethod \
-		-lc_threshold $lcThresh -trim_qual_left $trimQleft -out_good $cutNtrimRev \
-		-out_bad $cutNtrimFwd.prinseq_bad;
-		
-		cutNtrimFwd=$cutNtrimFwd.fastq;
-		cutNtrimRev=$cutNtrimRev.fastq;
-		echo "prinseq trimming"
+		-lc_threshold $lcThresh -trim_qual_left $trimQleft -out_good $cutNtrimRev;
+
+		echo "running prinseq trimming"
 		;;
 	    FALSE)
 		cutNtrimFwd=$cutFwd;
@@ -130,13 +105,10 @@ cutNtrimRun () {
 		;;
 	esac
 	
-	echo "prinseq finished"
-
-	$HOME/bin/cmpfastq.pl $cutNtrimFwd $cutNtrimRev
-
-	gzip $fastqFwd
-	gzip $fastqRev
  	
+	#clean
+
+
     else
 	echo "ERROR: No input file supplied"
     fi

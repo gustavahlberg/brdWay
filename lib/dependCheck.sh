@@ -240,10 +240,49 @@ dependCutNTrim () {
 
 #--------------------------------------------
 # check dependecies for cutNtrim, cutadapt and prinseq
+
 dependAlignBwa () {
     #fileCheck $1
     command_exists bwa
     command_exists samtools
     fileCheck $REF
     echo "dependencies for alignBwa: OK"
+}
+
+
+#--------------------------------------------
+#
+# check dependecies for bqsr (gatk)
+#
+
+dependIndelReAln () {
+
+    #checking typical GATK depenencies
+    dependGATK   
+    fileCheck $MILLS
+    fileCheck $G1Kindel
+    
+    echo "bedfile used: $bed"
+    fileCheck $bed
+    echo "dependencies for IndelReAln: OK"
+
+}
+
+
+#--------------------------------------------
+#
+# check dependecies for bqsr (gatk)
+#
+
+dependBqsr () {
+
+    #checking typical GATK depenencies
+    dependGATK   
+    fileCheck $dbsnp
+    fileCheck $MILLS
+    fileCheck $G1Kindel
+
+    echo "bedfile used: $bed"
+    fileCheck $bed
+    echo "dependencies for bqsr: OK"
 }

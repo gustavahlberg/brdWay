@@ -61,7 +61,7 @@ alignBwaRun () {
 fixHeader() {
     input=$1
     tmp=$(basename ${input%_L*})
-    samples=$tmp
+    sample=$tmp
     bam=$tmp.bam
     sort=$tmp.sort
     sortout=$sort.bam
