@@ -286,3 +286,26 @@ dependBqsr () {
     fileCheck $bed
     echo "dependencies for bqsr: OK"
 }
+
+#--------------------------------------------
+#
+# check dependecies for unifiedGenotyper (gatk)
+#
+
+dependUnifiedGenotyper () {
+
+    #checking typical GATK depenencies
+    dependGATK   
+    fileCheck $dbsnp
+
+    echo "Type selected:"$TYPE
+    variableCheck $TYPE
+
+    echo "Output selected:"$OUTPUT
+    variableCheck $OUTPUT
+
+    echo "bedfile used: $bed"
+    fileCheck $bed
+
+    echo "dependencies for unifiedGenotyper: OK"
+}

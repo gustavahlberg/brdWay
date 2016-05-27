@@ -1,8 +1,8 @@
 #!/bin/bash
 #
 # Author: Gustav 
-# 
-#
+# UnifiedGenotyper stage
+# supply input as a list
 #
 #-----------------------------------------
 #source configurations
@@ -20,17 +20,17 @@ PWD=${PWD%/}
 # Split a vcf after typ e.g. SNP or INDEL
 #
 
-selectType () {
+unifiedGenotyper () {
 
     if [[ $# -ge 1 ]]; then
 	case "$1" in
 	    run) shift
-		 selectTypeRun "$1";
+		unifiedGenotyperRun "$1";
 		 ;;
 	    depend) shift
-		    dependSelectType "$1";
+		    dependUnifiedGenotyper "$1";
 		    ;;
-	    *) echo "ERROR. run as: selectType depend/run ";
+	    *) echo "ERROR. run as: unifiedGenotyper depend/run ";
 	       exit 1
 	       ;;
 	esac
@@ -40,21 +40,20 @@ selectType () {
     	   
 }
 
-#Run selectVariants
-selectTypeRun () {
+#Run unifiedGenoTyper
+unifiedGenotyperRun () {
+    $list=$1
 
-    if [[ $# -ge 1 ]]; then
-	vcf=$1
-	output $vcf
-	OUT=${OUT%.vcf}.$TYPE.vcf
-	OUTPUT=${OUTPUT:-$OUT}
-
-	$GATK -T SelectVariants -R $REF -V $vcf \
-	-selectType $TYPE -o $OUTPATH$OUTPUT
-    else
-	echo "ERROR: No input file supplied"
-    fi
-    echo "selectType run exit status $?"	
-
+    $GATK -T UnifiedGenotyper -R $REF \
+    -I $list \
+    -glm $TYPE \	
+    --dbsnp $dbsnp \
+    -o $OUTPATH$OUTPUT \
+    -L $bed \
+    --interval_padding $PADDING \
+    -stand_call_conf 30.0 \
+    -stand_emit_conf 10.0 \
+    -nt $nt
+    
+    echo "unifiedGenotyper run exit status $?"	
 }
-
