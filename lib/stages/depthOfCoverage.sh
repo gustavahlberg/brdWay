@@ -21,15 +21,15 @@ PWD=${PWD%/}
 # Runs bedtools histograms
 #
 
-covHist () {
+depthOfCoverage () {
     if [[ $# -ge 1 ]]; then
 	case "$1" in
 	    run) shift
-		 covHistRun "$1";
+	        depthOfCoverageRun "$1";
 		 ;;
-	    depend) dependCovHist;
+	    depend) dependDepthOfCoverage;
 		    ;;
-	    *) echo "ERROR. run as: covHist depend/run ";
+	    *) echo "ERROR. run as: depthOfCoverage depend/run ";
 	       exit 1
 	       ;;
 	esac
@@ -40,16 +40,11 @@ covHist () {
 
 
 #Run program
-covHistRun () {
-    if [ ! -d "hist_cov" ]; then
-	mkdir hist_cov;
-    fi
-
-    module load bedtools
-    file=$1
-    out=$(basename "$file")
-    hist="hist_cov/"$out".hist.all.txt"
-    echo "bedfile used $bed"
-    echo $file
-    bedtools coverage -hist -abam $file -b $bed  | grep ^all > $hist 
+depthOfCoverageRun () {
+    list=$1
+   
+    $GATK -T DepthOfCoverage -R $REF \
+	-o $OUTPATH$OUTPUT \
+	-I $list \
+	-L $bed
 }

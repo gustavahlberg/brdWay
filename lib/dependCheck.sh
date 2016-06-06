@@ -309,3 +309,22 @@ dependUnifiedGenotyper () {
 
     echo "dependencies for unifiedGenotyper: OK"
 }
+
+#--------------------------------------------
+#
+# check dependecies for depthOfCoverage (gatk)
+#
+
+dependDepthOfCoverage () {
+
+    #checking typical GATK depenencies
+    dependGATK   
+    
+    echo "bedfile used: $bed"
+    fileCheck $bed
+
+    echo "dependencies for depthOfCoverage: OK"
+
+
+
+}

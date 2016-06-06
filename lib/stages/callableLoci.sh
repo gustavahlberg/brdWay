@@ -41,7 +41,10 @@ callableLoci () {
 
 #Run program
 callableLociRun () {
-    mkdir CallableLoci
+    if [ ! -d "CallableLoci" ]; then
+	mkdir CallableLoci
+    fi
+
     file=$1
     out=$(basename "$file")
     $GATK -T CallableLoci -R $REF \
