@@ -53,7 +53,8 @@ unifiedGenotyperRun () {
     --interval_padding $PADDING \
     -stand_call_conf 30.0 \
     -stand_emit_conf 10.0 \
-    -nt $nt
+    -nt $nt \
+    -nct $nct 	
     
     echo "unifiedGenotyper run exit status $?"	
 }

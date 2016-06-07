@@ -46,5 +46,6 @@ depthOfCoverageRun () {
     $GATK -T DepthOfCoverage -R $REF \
 	-o $OUTPATH$OUTPUT \
 	-I $list \
-	-L $bed
+	-L $bed \
+	#-nt $nt
 }

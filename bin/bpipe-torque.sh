@@ -179,6 +179,7 @@ make_pbs_script () {
    # write out the job script to a PBS script
    cat > $job_script_name << EOF
 #!/bin/bash
+#PBS group_list=cu_10039 -A cu_10039
 #PBS -N $NAME
 #PBS -e $LOGDIR/$NAME.err
 #PBS -o $LOGDIR/$NAME.log

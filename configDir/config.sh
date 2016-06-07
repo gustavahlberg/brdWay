@@ -34,7 +34,10 @@ PADDING=${PADDING:-100} #set default padding
 ANNOTATIONS_SNPS=${ANNOTATIONS_SNPS:-"-an QD -an FS -an SOR -an MQ -an MQRankSum -an ReadPosRankSum -an InbreedingCoeff"}
 ANNOTATIONS_INDELS=${ANNOTATIONS_INDELS:-"-an QD -an FS -an SOR -an MQRankSum -an ReadPosRankSum -an InbreedingCoeff"}
 nt=${nt:-1}
+nct=${nct:-1}
 HARDFILTER=${HARDFILTER:-"HD"}
+
+#SnpEff
 RUNEFF=${RUNEFF:-TRUE}
 RUNDBNSFP=${RUNDBNSFP:-TRUE}
 
@@ -139,7 +142,7 @@ TMPCONFDIR="$ROOT/temp"
 #GenomeAnalysisToolKit="$GRPROOT/TOOLS/GATK_latest/GenomeAnalysisTK.jar"
 
 GenomeAnalysisToolKit=${GenomeAnalysisToolKit:-$GRPROOT/TOOLS/GATK_latest/gatk3.4/GenomeAnalysisTK.jar}
-GATK="java -XX:+UseParallelGC -XX:ParallelGCThreads=8 -Xmx8g -Djava.io.tmpdir=$ROOT/temp -jar $GenomeAnalysisToolKit"
+GATK="java -XX:+UseParallelGC -XX:ParallelGCThreads=8 -Xmx16g -Djava.io.tmpdir=$SCRATCH/TMP -jar $GenomeAnalysisToolKit"
 
 
 #==================================================
