@@ -42,11 +42,11 @@ unifiedGenotyper () {
 
 #Run unifiedGenoTyper
 unifiedGenotyperRun () {
-    $list=$1
+    list=$1
 
     $GATK -T UnifiedGenotyper -R $REF \
     -I $list \
-    -glm $TYPE \	
+    -glm $TYPE \
     --dbsnp $dbsnp \
     -o $OUTPATH$OUTPUT \
     -L $bed \
