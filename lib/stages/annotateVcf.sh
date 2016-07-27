@@ -88,7 +88,7 @@ annotateVcfRun () {
 	
 	output $annon_dbnsfp
 	OUTPUT=${OUTPUT:-$OUT}
-	mv $annon_dbnsfp $OUT 
+	mv $annon_dbnsfp $OUTPUT 
 	
 	#clean
 
