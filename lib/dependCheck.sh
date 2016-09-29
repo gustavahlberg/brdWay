@@ -347,3 +347,50 @@ dependVariantsToBinaryPed () {
 
 
 }
+
+#--------------------------------------------
+#
+# check dependecies for singleHaploTypeCaller (gatk)
+#
+
+dependSingleHaploTypeCaller () {
+
+    #checking typical GATK depenencies
+    dependGATK   
+    
+    fileCheck $dbsnp138
+
+    echo "bedfile used: $bed"
+    fileCheck $bed
+
+    echo "dependencies for SingleHaploTypeCaller: OK"
+
+}
+
+
+#--------------------------------------------
+#
+# check dependecies for depenCombineGvcfs
+#
+
+dependCombineGvcfs () {
+
+    #checking typical GATK depenencies
+    dependGATK   
+    echo "dependencies for CombineGvcfs: OK"
+
+}
+
+
+#--------------------------------------------
+#
+# check dependecies for depenCombineGvcfs
+#
+
+dependGenotypeGvcfs () {
+
+    #checking typical GATK depenencies
+    dependGATK   
+    echo "dependencies for CombineGvcfs: OK"
+
+}

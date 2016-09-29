@@ -98,7 +98,7 @@ HAPMAP=${HAPMAP:-$RESRC/hapmap_3.3.b37.sites.vcf}
 OMNI=${OMNI:-$RESRC/1000G_omni2.5.b37.sites.vcf}
 G1K=${G1K:-$RESRC/1000G_phase1.snps.high_confidence.b37.vcf}
 G1Kindel=${G1Kindel:-$RESRC/1000G_phase1.indels.b37.vcf}
-#dbsnp138=${dnsnp138:-$RESRC/dbsnp_138.b37.vcf}
+dbsnp138=${dnsnp138:-$RESRC/dbsnp_138.b37.vcf}
 MILLS=${MILLS:-$RESRC/Mills_and_1000G_gold_standard.indels.b37.vcf}
 
 #Resources
@@ -144,9 +144,9 @@ TMPCONFDIR="$ROOT/temp"
 
 #==================================================
 # Set location for Tool
-GenomeAnalysisToolKit="$GRPROOT/TOOLS/GATK_latest/GenomeAnalysisTK.jar"
+#GenomeAnalysisToolKit="$GRPROOT/TOOLS/GATK_latest/GenomeAnalysisTK.jar"
 
-#GenomeAnalysisToolKit=${GenomeAnalysisToolKit:-$GRPROOT/TOOLS/GATK_latest/gatk3.4/GenomeAnalysisTK.jar}
+GenomeAnalysisToolKit=${GenomeAnalysisToolKit:-$GRPROOT/TOOLS/GATK_latest/gatk3.4/GenomeAnalysisTK.jar}
 GATK="java -XX:+UseParallelGC -XX:ParallelGCThreads=8 -Xmx16g -Djava.io.tmpdir=$SCRATCH/TMP -jar $GenomeAnalysisToolKit"
 
 
