@@ -328,3 +328,22 @@ dependDepthOfCoverage () {
 
 
 }
+
+#--------------------------------------------
+#
+# check dependecies for VariantsToBinaryPed (gatk)
+#
+
+dependVariantsToBinaryPed () {
+
+    #checking typical GATK depenencies
+    dependGATK   
+    
+    echo "meta file used: $META"
+    fileCheck $META
+
+    echo "dependencies for variantsToBinaryPed: OK"
+
+
+
+}

@@ -57,7 +57,7 @@ annotateVcfRun () {
 	case $RUNEFF in
 	    TRUE)
 		annon=$SCRATCH/${OUT%.vcf}.annon.vcf;
-		java -Xmx4g -jar $snpEff -v GRCh37.75 -classic $vcf > $annon;
+		java -XX:+UseParallelGC -XX:ParallelGCThreads=8 -Xmx16g -Djava.io.tmpdir=$SCRATCH/TMP -jar $snpEff -v GRCh37.75 -classic $vcf > $annon;
 		echo "running snpEFf"
 		;;
 	    FALSE) 

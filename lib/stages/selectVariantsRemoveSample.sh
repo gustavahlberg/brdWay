@@ -49,11 +49,12 @@ selectVariantsRemoveSampleRun () {
 	: ${NT:=1}
 	in=$(basename $vcf)
 	out=${in%.*}.selectSamples.vcf
+	OUTPUT=${OUTPUT:=$out}
 
-	$GATK -R $REF -T SelectVariants -V $vcf\
-	-o $outdir/$out\
-	-nt $NT\
-	--exclude_sample_file  $LIST
+	$GATK -R $REF -T SelectVariants -V $vcf \
+	-o $OUTPATH$OUTPUT \
+	-nt $NT \
+	--exclude_sample_file $LIST
     else
 	echo "ERROR: No input file supplied"
     fi

@@ -52,7 +52,7 @@ variantFiltrationRun () {
 	$GATK -T VariantFiltration -R $REF -V $vcf \
 	--filterExpression "$filterExpression" \
         --filterName $HARDFILTER \
-	-o $OUTPUT \
+	-o $OUTPATH$OUTPUT \
 	-nt $nt
     else
 	echo "ERROR: No input file supplied"
