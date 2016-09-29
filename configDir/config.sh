@@ -142,7 +142,8 @@ TMPCONFDIR="$ROOT/temp"
 #GenomeAnalysisToolKit="$GRPROOT/TOOLS/GATK_latest/GenomeAnalysisTK.jar"
 
 GenomeAnalysisToolKit=${GenomeAnalysisToolKit:-$GRPROOT/TOOLS/GATK_latest/gatk3.4/GenomeAnalysisTK.jar}
-GATK="java -XX:+UseParallelGC -XX:ParallelGCThreads=8 -Xmx16g -Djava.io.tmpdir=$SCRATCH/TMP -jar $GenomeAnalysisToolKit"
+gatkTMP="java -XX:+UseParallelGC -XX:ParallelGCThreads=8 -Xmx16g -Djava.io.tmpdir=$SCRATCH/TMP -jar $GenomeAnalysisToolKit"
+GATK=${GATK:-$gatkTMP}
 
 
 #==================================================
