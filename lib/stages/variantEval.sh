@@ -49,7 +49,7 @@ variantEvalRun () {
         -D $dbSnp_ExOver129 \
 	-comp $exac \
 	-eval $1 \
-	-o $OUT.eval.gatkreport \
+	-o $OUTPATH$OUT.eval.gatkreport \
 	-L $bed \
         -ip $PADDING \
 	-nt $nt

@@ -55,7 +55,7 @@ selectVariantRegionRun () {
 
 	$GATK -R $REF -T SelectVariants -V $vcf \
 	-L $bed \
-	-o $OUTPUT \
+	-o $OUTPATH$OUTPUT \
 	-nt $NT \
 	-selectType INDEL -selectType SNP \
 	--interval_padding $PADDING

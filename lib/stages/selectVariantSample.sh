@@ -47,8 +47,8 @@ selectVariantSampleRun () {
 	vcf=$1
 	output $vcf
 	OUT=${OUT%.vcf}.selectedSamples.vcf
-	OUTPUT=${OUTPUT:-$OUT}
-
+	OUTPUT=${OUTPUT:=$OUT}
+	
 	#default cores 1
 	: ${NT:=1}
 	#in=$(basename $vcf)

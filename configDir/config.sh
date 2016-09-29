@@ -122,6 +122,11 @@ bed=${bed:-$RESRC/Broad.human.exome.b37.interval_list}
 REF=${REF:-"$RESRC/REF/hs.build37.1.fa"}
 
 
+# GATK minGenotypeQuality 
+MPG=${MPG:-0}
+
+
+
 #=================================================
 # Annotation paths
 #=================================================
@@ -139,9 +144,9 @@ TMPCONFDIR="$ROOT/temp"
 
 #==================================================
 # Set location for Tool
-#GenomeAnalysisToolKit="$GRPROOT/TOOLS/GATK_latest/GenomeAnalysisTK.jar"
+GenomeAnalysisToolKit="$GRPROOT/TOOLS/GATK_latest/GenomeAnalysisTK.jar"
 
-GenomeAnalysisToolKit=${GenomeAnalysisToolKit:-$GRPROOT/TOOLS/GATK_latest/gatk3.4/GenomeAnalysisTK.jar}
+#GenomeAnalysisToolKit=${GenomeAnalysisToolKit:-$GRPROOT/TOOLS/GATK_latest/gatk3.4/GenomeAnalysisTK.jar}
 GATK="java -XX:+UseParallelGC -XX:ParallelGCThreads=8 -Xmx16g -Djava.io.tmpdir=$SCRATCH/TMP -jar $GenomeAnalysisToolKit"
 
 

@@ -214,7 +214,7 @@ start () {
    if [[ -f $job_script_name ]]
       then
          # launch the job and get its id
-         job_id_full=`qsub $job_script_name`
+         job_id_full=`qsub $AFTEROK $job_script_name`
          qsub_exit_status=$?
 	 #echo $job_id_full
          if [[ $? -eq 0 ]]

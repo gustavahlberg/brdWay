@@ -43,7 +43,7 @@ variantRecalibrator () {
 #Run variantRecalibrator
 variantRecalibratorRun () {
     vcf=$1
-    echo "Hej"
+
     case $TYPE in 
 	SNP) shift 
 	    variantRecalibratorRunSNP "$vcf";
@@ -96,7 +96,7 @@ variantRecalibratorRunSNP () {
 
 
 
-
+ 
 #============================================================
 # variantRecalibrator for INDELs
 #============================================================
@@ -109,7 +109,6 @@ variantRecalibratorRunINDEL () {
 	OUT=${OUT%.gz}
 	OUT=${OUT%.vcf}
 	OUTPUT=${OUTPUT:-$OUT}
-	nt=${nt:-1}
 
 
 	$GATK -T VariantRecalibrator -R $REF \
