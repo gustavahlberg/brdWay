@@ -47,6 +47,8 @@ genotypeGvcfsRun () {
     $GATK -R $REF -T GenotypeGVCFs \
 	  --variant $list \
 	  -o $OUTPATH$OUTPUT \
+	  -L $bed \
+	  -ip $PADDING \
 	  -nt $nt
 
     echo "genotypeGvcfs run exit status $?"	

@@ -48,6 +48,8 @@ combineGvcfsRun () {
     $GATK -R $REF -T CombineGVCFs \
 	  --variant $list \
 	  -o $OUTPATH$OUTPUT \
+	  -L $bed \
+	  -ip $PADDING \
 	  -nt $nt
 
     echo "combineGvcfs run exit status $?"	
