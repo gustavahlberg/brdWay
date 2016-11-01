@@ -45,7 +45,8 @@ covHistRun () {
 	mkdir hist_cov;
     fi
 
-    module load bedtools
+    module load tools 
+    module load bedtools/2.22.1
     file=$1
     out=$(basename "$file")
     hist="hist_cov/"$out".hist.all.txt"

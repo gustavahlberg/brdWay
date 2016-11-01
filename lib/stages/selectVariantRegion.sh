@@ -57,7 +57,7 @@ selectVariantRegionRun () {
 	-L $bed \
 	-o $OUTPATH$OUTPUT \
 	-nt $NT \
-	-selectType INDEL -selectType SNP \
+	#-selectType INDEL -selectType SNP \
 	--interval_padding $PADDING
     else
 	echo "ERROR: No input file supplied"

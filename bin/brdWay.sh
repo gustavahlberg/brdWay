@@ -70,25 +70,25 @@ runOnCluster () {
     jobID=`sendPBS $1`;    
     #jobID=`customPBS $1`;    
 
-    while true; do
+    #while true; do
 	STATUS=`jobStatus $jobID`
 	#STATUS=`$torque status $jobID`
 	#echo $STATUS
 	#echo $jobID
 	
-	case $STATUS in
-	    WAITING) sleep 20;; #if job is still running 
-	    RUNNING) sleep 20;; #if job is still running 
-	    COMPLETE*)
-		echo $STATUS;
-		break;;		# 
-	    UNKNOWN) 
-		echo ERROR: job did not complete run;
+	#case $STATUS in
+	    #WAITING) sleep 20;; #if job is still running 
+	    #RUNNING) sleep 20;; #if job is still running 
+	    #COMPLETE*)
+	 #	echo $STATUS;
+	#	break;;		# 
+	 #   UNKNOWN) 
+	#	echo ERROR: job did not complete run;
 		#exit 1;
-		break;;
+	#	break;;
 	    
-	esac
-    done
+	#esac
+    #done
 }
 
 #on machine
